@@ -5,7 +5,10 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 
+	"github.com/jmaitlandsoto/luna-cli/internal/file"
 	"github.com/jmaitlandsoto/luna-cli/internal/scrape"
 	"github.com/spf13/cobra"
 )
@@ -20,15 +23,26 @@ var scrapeCmd = &cobra.Command{
 
 func scrapeRun(cmd *cobra.Command, args []string) {
 
-	for _, x := range args {
-		text, err := scrapeAndParse(x)
+	cwd, err := os.Getwd()
+	if err != nil {
+		fmt.Printf("Error getting current directory: %v\n", err)
+		return
+	}
+
+	for i, url := range args {
+		text, err := scrapeAndParse(url)
 		if err != nil {
 			fmt.Println("Ran into an error")
 			break
 		}
-		fmt.Printf("%v", text)
+
+		err = file.CreateTxt(strconv.Itoa(i), cwd, text)
+		if err != nil {
+			fmt.Printf("Error creating Txt file: %v\n", err)
+			break
+		}
 	}
-	fmt.Println("\n\n---------- scrape complete ----------")
+	fmt.Println("\n---------- scrape complete ----------")
 }
 
 func scrapeAndParse(url string) (string, error) {
