@@ -11,7 +11,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "webscraper-cli",
+	Use:   "luna",
 	Short: "A quick way to get the text contents of a web page.",
 	Long: `Luna is a CLI application built in GO.
 This tool can be used to quickly scrape any webpages text.`,
