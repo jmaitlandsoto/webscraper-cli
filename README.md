@@ -14,3 +14,4 @@ $ luna scrape https://some.site.com
 - Add flags for parsing certain parts of a site, like main content, headings only, etc.
 - Add flags for output in different file formats like .txt, .pdf, .cvs
 - Think of a fun new name for the project (luna-cli already exists)
+- Write some tests
