@@ -6,7 +6,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/jmaitlandsoto/luna-cli/internal/scraper"
+	"github.com/jmaitlandsoto/luna-cli/internal/scrape"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,7 @@ var scrapeCmd = &cobra.Command{
 func scrapeRun(cmd *cobra.Command, args []string) {
 
 	for _, x := range args {
-		text, err := scraper.Scrape(x)
+		text, err := scrapeAndParse(x)
 		if err != nil {
 			fmt.Println("Ran into an error")
 			break
@@ -29,6 +29,22 @@ func scrapeRun(cmd *cobra.Command, args []string) {
 		fmt.Printf("%v", text)
 	}
 	fmt.Println("\n\n---------- scrape complete ----------")
+}
+
+func scrapeAndParse(url string) (string, error) {
+
+	siteContent, err := scrape.ScrapeHTML(url)
+	if err != nil {
+		return "", err
+	}
+
+	text, err := scrape.ParseHTML(siteContent)
+	if err != nil {
+		return "", err
+	}
+
+	fmt.Println(text)
+	return text, nil
 }
 
 func init() {
