@@ -15,3 +15,8 @@ $ luna scrape https://some.site.com
 - Add flags for output in different file formats like .txt, .pdf, .cvs
 - Think of a fun new name for the project (luna-cli already exists)
 - Write some tests
+
+## Why?
+I've finally become curious enough to dive into a new language, GO. I figured a web scraper is practical and simple enough that I could work through GO's docs to figure it out. So far it's been great! 
+
+I'm also building an AI web app that has me pondering different creative ways to provide useful inputs to LLMs, specifically from the world wide web.
